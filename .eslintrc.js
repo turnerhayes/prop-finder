@@ -19,7 +19,10 @@ module.exports = {
     "babel",
   ],
   "rules": {
-    "quotes": ["error", "double"],
+    "quotes": ["error", "double", {
+      "avoidEscape": true,
+      "allowTemplateLiterals": true,
+    }],
     "require-jsdoc": ["warn"],
     "max-len": ["warn"],
     "object-curly-spacing": ["warn", "always"],

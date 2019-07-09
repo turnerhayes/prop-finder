@@ -1,5 +1,5 @@
 const RedisConfig = {
-  url: process.env.FIEF_REDIS_URL,
+  url: process.env.APTS_REDIS_URL,
 };
 
 module.exports = RedisConfig;

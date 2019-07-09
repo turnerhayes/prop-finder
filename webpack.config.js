@@ -14,11 +14,21 @@ const Config = require("./server/config");
 let webpackConfig = {
   entry: [
     "babel-polyfill",
-    "./client/index.js",
+    "./client/index.tsx",
   ],
   output: require("./config/webpack/output"),
   module: {
     rules: [
+      {
+        test: /\.tsx?$/,
+        include: [path.resolve(__dirname, "client")],
+        exclude: /node_modules/,
+        use: [
+          "babel-loader",
+          "ts-loader",
+        ],
+      },
+
       {
         test: /\.js$/,
         exclude: /node_modules/,
@@ -86,10 +96,6 @@ let webpackConfig = {
         },
         {}
       ),
-      IS_WEATHER_ENABLED: Boolean(
-        Config.weather.openWeatherMapAPIKey &&
-          Config.property.location
-      ),
     }),
 
     new MiniCssExtractPlugin({
@@ -99,6 +105,7 @@ let webpackConfig = {
   ],
   resolve: {
     alias: require("./config/webpack/aliases"),
+    extensions: [".tsx", ".ts", ".js"],
   },
   mode: Config.app.environment,
   devtool: "inline-source-map",

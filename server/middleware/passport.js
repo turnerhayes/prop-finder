@@ -1,7 +1,7 @@
 "use strict";
 
 const passport = require("passport");
-const debug = require("debug")("fief:server:middleware:passport");
+const debug = require("debug")("apts:server:middleware:passport");
 const {
   findUser,
   addUser,

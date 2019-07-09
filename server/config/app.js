@@ -1,16 +1,16 @@
 const path = require("path");
 const pathsConfig = require("./paths");
 
-const DEFAULT_PORT = 7000;
+const DEFAULT_PORT = 11220;
 
 let {
   NODE_ENV: environment = "development",
-  FIEF_HOST: host = "localhost",
-  FIEF_PORT: port = process.env.PORT || DEFAULT_PORT,
-  FIEF_EXTERNAL_PORT: externalPort = port,
-  FIEF_APP_SSL_KEY: sslKeyPath,
-  FIEF_APP_SSL_CERT: sslCertPath,
-  FIEF_APP_IS_SECURE: isSecure,
+  APTS_HOST: host = "localhost",
+  APTS_PORT: port = process.env.PORT || DEFAULT_PORT,
+  APTS_EXTERNAL_PORT: externalPort = port,
+  APTS_APP_SSL_KEY: sslKeyPath,
+  APTS_APP_SSL_CERT: sslCertPath,
+  APTS_APP_IS_SECURE: isSecure,
 } = process.env;
 
 port = Number(port);
