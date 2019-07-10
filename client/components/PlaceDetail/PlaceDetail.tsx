@@ -86,29 +86,10 @@ export const PlaceDetail = ({ placeID }: IPlaceDetailComponentProps) => {
     return null;
   }
 
-  return (
-    <Grid container
-      direction="column"
-    >
-      <Grid item container
-        direction="row"
-        justify="space-between"
-        alignItems="center"
-      >
-        <Typography
-          variant="h2"
-        >
-          <PlaceAddress
-            place={place}
-            multiline
-          />
-        </Typography>
-        <PlaceRating
-          place={place}
-          size={RatingComponentSizes.Large}
-          onRatingChange={handleRatingChange}
-        />
-      </Grid>
+  let mapButton: JSX.Element|undefined = undefined;
+  
+  if (process.env.APTS_GOOGLE_MAPS_API_KEY) {
+    mapButton = (
       <Grid item>
         <Button
           onClick={handleShowMapButtonClick}
@@ -141,6 +122,33 @@ export const PlaceDetail = ({ placeID }: IPlaceDetailComponentProps) => {
           </DialogContent>
         </Dialog>
       </Grid>
+    );
+  }
+
+  return (
+    <Grid container
+      direction="column"
+    >
+      <Grid item container
+        direction="row"
+        justify="space-between"
+        alignItems="center"
+      >
+        <Typography
+          variant="h2"
+        >
+          <PlaceAddress
+            place={place}
+            multiline
+          />
+        </Typography>
+        <PlaceRating
+          place={place}
+          size={RatingComponentSizes.Large}
+          onRatingChange={handleRatingChange}
+        />
+      </Grid>
+      { mapButton }
       <Grid item>
         {
           place.get("amenities") && !place.get("amenities").isEmpty() ?

@@ -96,6 +96,7 @@ let webpackConfig = {
         },
         {}
       ),
+      APTS_GOOGLE_MAPS_API_KEY: null,
     }),
 
     new MiniCssExtractPlugin({

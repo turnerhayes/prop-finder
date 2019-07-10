@@ -76,7 +76,7 @@ export const PlaceMap = ({
   return (
     <PlaceMapInner
       place={place}
-      googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyAJSBrcOMa0mZzh6eZd1ccew3A6RRRwhng`}
+      googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${process.env.APTS_GOOGLE_MAPS_API_KEY}`}
       loadingElement={<div style={{ height: "100%", width: "100%" }} />}
       containerElement={<div style={{ height, width }} />}
       mapElement={<div style={{ height: "100%", width: "100%" }} />}
