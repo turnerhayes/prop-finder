@@ -15,17 +15,41 @@ export interface IPlaceRatingComponentProps {
 }
 
 const useStyles = makeStyles({
+  root: {
+    display: "flex",
+    flexDirection: "row-reverse",
+  },
+
   large: {
     fontSize: "2em",
   },
 
+  star: {
+    "&::before": {
+      content: '"☆"',
+    },
+
+    "$interactive&:hover::before": {
+      content: '"★"',
+      color: "gold",
+      textShadow: "0 0 8px gold",
+    },
+
+    "$interactive&:hover ~ $star::before": {
+      textShadow: "0 0 8px gold",
+    },
+  },
+
   filledStar: {
-    color: "gold",
+    "&::before": {
+      content: '"★"',
+      color: "gold",
+    },
   },
 
   interactive: {
     cursor: "pointer",
-  }
+  },
 });
 
 export const PlaceRating = (
@@ -56,9 +80,12 @@ export const PlaceRating = (
 
   return (
     <div
-      className={classnames({
-        [classes.large]: size === RatingComponentSizes.Large,
-      })}
+      className={classnames(
+        classes.root,
+        {
+          [classes.large]: size === RatingComponentSizes.Large,
+        }
+      )}
     >
       {
         Range(0, 5).map(
@@ -69,26 +96,23 @@ export const PlaceRating = (
               <span
                 key={index}
                 data-index={index}
-                className={classnames({
-                  [classes.filledStar]: isFilled,
-                  [classes.interactive]: isInteractive,
-                })}
+                className={classnames(
+                  classes.star,
+                  {
+                    [classes.filledStar]: isFilled,
+                    [classes.interactive]: isInteractive,
+                  }
+                )}
                 onClick={handleStarClick}
                 role={
                   isInteractive ?
                     "button" :
                     undefined
                 }
-              >
-                {
-                  isFilled ?
-                    "★" :
-                    "☆"
-                }
-              </span>
+              ></span>
             );
           }
-        )
+        ).reverse().toArray()
       }
     </div>
   );
