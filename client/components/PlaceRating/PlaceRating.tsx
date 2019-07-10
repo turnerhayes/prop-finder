@@ -112,6 +112,14 @@ export const PlaceRating = (
               ></span>
             );
           }
+        // This little hack lets us highlight a star on hover *and all stars
+        // before it* using only CSS; there's no "previous siblings" CSS
+        // selector, only "following siblings". So we render the stars in
+        // reverse order, so that, for example, the 1-star is after the 2-star
+        // in DOM order, and therefore using the following siblings selector
+        // will apply to the 1-star. We then reverse the display order (using
+        // flexbox's "row-reverse" flex-direction) so it displays the reversed
+        // stars in reverse order (i.e. in the correct order)
         ).reverse().toArray()
       }
     </div>
